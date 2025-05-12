@@ -8,10 +8,10 @@ generator client {
 }
 
 model Bank {
-  blz       String   @id     // z. B. "32000"
-  name      String   // "Stadtbank Wien"
-  urlPath   String   // "noew/rlb"
-  branches  Branch[] // Beziehungen zu Branches (z. B. mehrere Filialen möglich)
+  blz       String   @id
+  name      String
+  urlPath   String
+  branches  Branch[]
 }
 
 model Branch {
