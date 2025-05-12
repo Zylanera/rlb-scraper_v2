@@ -1,0 +1,35 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./database/sqlite.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Bank {
+  blz       String   @id     // z. B. "32000"
+  name      String   // "Stadtbank Wien"
+  urlPath   String   // "noew/rlb"
+  branches  Branch[] // Beziehungen zu Branches (z. B. mehrere Filialen möglich)
+}
+
+model Branch {
+  id         Int       @id           // z. B. 32985
+  name       String
+  scrapedAt  DateTime  @default(now())
+  bankBlz    String
+  bank       Bank      @relation(fields: [bankBlz], references: [blz])
+  products   Product[]
+}
+
+model Product {
+  id        Int      @id @default(autoincrement())
+  laufzeit  String
+  zinssatz  Float
+  variante  String
+  bild      Boolean
+  strecke   String
+  branchId  Int
+  branch    Branch   @relation(fields: [branchId], references: [id])
+}

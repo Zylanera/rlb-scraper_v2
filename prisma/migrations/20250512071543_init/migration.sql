@@ -1,0 +1,8 @@
+-- CreateTable
+CREATE TABLE "Product" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL,
+    "zinssatz" REAL NOT NULL,
+    "laufzeit" TEXT NOT NULL,
+    "scrapedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
