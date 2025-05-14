@@ -11,16 +11,6 @@ model Bank {
   blz       String   @id
   name      String
   urlPath   String
-  branches  Branch[]
-}
-
-model Branch {
-  id         Int       @id           // z. B. 32985
-  name       String
-  scrapedAt  DateTime  @default(now())
-  bankBlz    String
-  bank       Bank      @relation(fields: [bankBlz], references: [blz])
-  products   Product[]
 }
 
 model Product {
@@ -30,6 +20,6 @@ model Product {
   variante  String
   bild      Boolean
   strecke   String
-  branchId  Int
-  branch    Branch   @relation(fields: [branchId], references: [id])
+  bankBlz   String  // Bankleitzahl direkt im Product speichern
 }
+
